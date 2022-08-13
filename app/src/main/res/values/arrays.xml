@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="noteCategory" >
+        <item>Home</item>
+        <item>Work</item>
+        <item>School</item>
+        <item>Cooking</item>
+        <item>Sport</item>
+        <item>Shopping</item>
+        <item>Personal</item>
+    </string-array>
+</resources>
