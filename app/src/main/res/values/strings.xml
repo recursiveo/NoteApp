@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Test2</string>
+    <string name="app_name">My Note App</string>
     <string name="title_activity_main2">MainActivity2</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
