@@ -2,6 +2,7 @@ package com.example.test2;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -50,8 +51,41 @@ public class MainActivity extends AppCompatActivity {
         sqLiteDatabase = openOrCreateDatabase("NoteDB", MODE_PRIVATE, null);
 
         binding.floatingActionButton.setOnClickListener(v -> alertDialog());
+        binding.search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchDialog();
+            }
+        });
         showNoteList();
 
+    }
+
+    private void searchDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.search_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+        Button search = dialog.findViewById(R.id.searchBtn);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText searchBox = dialog.findViewById(R.id.searchDesc);
+                String searchString = searchBox.getText().toString().trim();
+
+                if(searchString.isEmpty()){
+                    searchBox.setError("Note is required");
+                    searchBox.requestFocus();
+                    return;
+                }
+                dialog.dismiss();
+
+                Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
+                intent.putExtra("searchParam", searchString);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

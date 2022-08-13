@@ -97,5 +97,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return rowsUpdated;
     }
 
+    public Cursor getNoteByDesc(String searchParam){
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        String sql = "SELECT * FROM "+ TABLE_NAME + " WHERE " + DESC + " LIKE '%" + searchParam + "%' COLLATE NOCASE;";
+        return sqLiteDatabase.rawQuery(sql,null);
+    }
+
 
 }
