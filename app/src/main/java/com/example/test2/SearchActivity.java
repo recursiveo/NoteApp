@@ -1,15 +1,14 @@
 package com.example.test2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.test2.databinding.ActivitySearchBinding;
 
@@ -41,31 +40,31 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void searchForNote(String searchString) {
-            Cursor cursor = databaseHelper.getNoteByDesc(searchString);
-                noteList1 = new ArrayList<>();
-                if(cursor.moveToFirst()){
-                    do{
-                        noteList1.add(
-                                new Note(cursor.getInt(0),
-                                        cursor.getString(1),
-                                        cursor.getString(2))
+        Cursor cursor = databaseHelper.getNoteByDesc(searchString);
+        noteList1 = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                noteList1.add(
+                        new Note(cursor.getInt(0),
+                                cursor.getString(1),
+                                cursor.getString(2))
 
-                        );
-                    }while (cursor.moveToNext());
-                }
-
-                SearchAdapter adapter = new SearchAdapter(
-                        getApplicationContext(),
-                        R.layout.search_list,
-                        noteList1
                 );
+            } while (cursor.moveToNext());
+        }
 
-                binding.searchList.setAdapter(adapter);
+        SearchAdapter adapter = new SearchAdapter(
+                getApplicationContext(),
+                R.layout.search_list,
+                noteList1
+        );
+
+        binding.searchList.setAdapter(adapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 

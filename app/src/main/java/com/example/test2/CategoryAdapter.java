@@ -15,11 +15,11 @@ import java.util.List;
 
 public class CategoryAdapter extends ArrayAdapter {
 
-    private Context context;
-    private int layoutRes;
-    private List<String> cats;
+    private final Context context;
+    private final int layoutRes;
+    private final List<String> cats;
 
-    public CategoryAdapter(@NonNull Context context, int resource,@NonNull List<String> cats) {
+    public CategoryAdapter(@NonNull Context context, int resource, @NonNull List<String> cats) {
         super(context, resource, cats);
         this.context = context;
         this.layoutRes = resource;

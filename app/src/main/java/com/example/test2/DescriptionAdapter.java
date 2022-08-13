@@ -2,13 +2,10 @@ package com.example.test2;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,9 +16,9 @@ import java.util.List;
 
 public class DescriptionAdapter extends ArrayAdapter {
 
-    private Context context;
-    private int layoutRes;
-    private List<Note> notes;
+    private final Context context;
+    private final int layoutRes;
+    private final List<Note> notes;
     private DatabaseHelper databaseHelper;
 
     public DescriptionAdapter(@NonNull Context context, int resource, @NonNull List<Note> notes) {
@@ -41,7 +38,7 @@ public class DescriptionAdapter extends ArrayAdapter {
 
         //Button button = view.findViewById(R.id.categoryBtn);
 
-       // button.setText(cats.get(position));
+        // button.setText(cats.get(position));
 
         TextView desc = view.findViewById(R.id.description);
         desc.setText(notes.get(position).getDesc());
@@ -74,17 +71,17 @@ public class DescriptionAdapter extends ArrayAdapter {
                     @Override
                     public void onClick(View v) {
                         String updatedNote = newNote.getText().toString().trim();
-                        int rowCount= databaseHelper.updateNote(notes.get(position).getId(), updatedNote);
-                        if(rowCount == 1){
+                        int rowCount = databaseHelper.updateNote(notes.get(position).getId(), updatedNote);
+                        if (rowCount == 1) {
                             notes.get(position).setDesc(updatedNote);
                             notifyDataSetChanged();
                             Toast.makeText(getContext(), "Note Updated", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
-                        }else {
+                        } else {
                             Toast.makeText(getContext(), "Error Occurred", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
-                        
+
                     }
                 });
 
@@ -93,6 +90,6 @@ public class DescriptionAdapter extends ArrayAdapter {
         });
 
         return view;
-        
+
     }
 }

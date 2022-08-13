@@ -31,36 +31,38 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-    <ListView
-        android:id="@+id/catList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <ListView
+            android:id="@+id/catList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="80dp"
         android:clickable="true"
-        android:focusable="true"
         android:contentDescription="Search"
-        app:srcCompat="@android:drawable/ic_menu_search"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="80dp"
-        android:layout_marginEnd="10dp"/>
+        app:srcCompat="@android:drawable/ic_menu_search" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:clickable="true"
         android:contentDescription="add"
         android:focusable="true"
-        app:srcCompat="@android:drawable/ic_menu_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="10dp"/>
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

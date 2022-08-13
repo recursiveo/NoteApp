@@ -11,13 +11,12 @@ import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "NoteDB";
-    private final String TAG = "DatabaseHelper";
     private static final int VERSION = 1;
     private static final String TABLE_NAME = "LiveCat";
-
     private static final String COLUMN_ID = "id";
     private static final String CAT = "cat_name";
     private static final String DESC = "note_desc";
+    private final String TAG = "DatabaseHelper";
     //private static final String COL3 = "";
 
     public DatabaseHelper(@Nullable Context context) {
@@ -60,8 +59,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean deleteItem(int id) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        Log.d(TAG,String.valueOf(id));
-        return sqLiteDatabase.delete(TABLE_NAME, COLUMN_ID+"=?", new String[]{String.valueOf(id)}) > 0;
+        Log.d(TAG, String.valueOf(id));
+        return sqLiteDatabase.delete(TABLE_NAME, COLUMN_ID + "=?", new String[]{String.valueOf(id)}) > 0;
 
     }
 
@@ -72,35 +71,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return sqLiteDatabase.rawQuery(sql, null);
     }
 
-    public Cursor getAllNotesFromCategory(String category){
+    public Cursor getAllNotesFromCategory(String category) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        String sql = "Select cat_name,note_desc,id from "+ TABLE_NAME + " where cat_name= '" + category + "' ;";
-        return sqLiteDatabase.rawQuery(sql,null);
+        String sql = "Select cat_name,note_desc,id from " + TABLE_NAME + " where cat_name= '" + category + "' ;";
+        return sqLiteDatabase.rawQuery(sql, null);
     }
 
-    public int deleteCategory(String category){
+    public int deleteCategory(String category) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         //String sql = "DELETE FROM "+ TABLE_NAME + " WHERE "+ CAT + "= '" + category + "' ;";
-        int rowCount = sqLiteDatabase.delete(TABLE_NAME, CAT+"=?", new String[]{category});
+        int rowCount = sqLiteDatabase.delete(TABLE_NAME, CAT + "=?", new String[]{category});
         Log.d(TAG, "deleteCategory: " + rowCount);
         return rowCount;
 
     }
 
-    public int updateNote(int id, String newNote){
+    public int updateNote(int id, String newNote) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DESC, newNote);
-        int rowsUpdated =  sqLiteDatabase.update(TABLE_NAME, contentValues, COLUMN_ID+ "=?", new String[]{String.valueOf(id)});
+        int rowsUpdated = sqLiteDatabase.update(TABLE_NAME, contentValues, COLUMN_ID + "=?", new String[]{String.valueOf(id)});
         Log.d(TAG, "updateNote:  " + rowsUpdated);
 
         return rowsUpdated;
     }
 
-    public Cursor getNoteByDesc(String searchParam){
+    public Cursor getNoteByDesc(String searchParam) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        String sql = "SELECT * FROM "+ TABLE_NAME + " WHERE " + DESC + " LIKE '%" + searchParam + "%' COLLATE NOCASE;";
-        return sqLiteDatabase.rawQuery(sql,null);
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + DESC + " LIKE '%" + searchParam + "%' COLLATE NOCASE;";
+        return sqLiteDatabase.rawQuery(sql, null);
     }
 
 

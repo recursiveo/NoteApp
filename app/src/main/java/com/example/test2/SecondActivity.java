@@ -1,21 +1,17 @@
 package com.example.test2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.test2.databinding.ActivitySecondBinding;
 
@@ -30,6 +26,7 @@ public class SecondActivity extends AppCompatActivity {
     private List<Note> noteList;
 
     private ActivitySecondBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +57,9 @@ public class SecondActivity extends AppCompatActivity {
         deleteCategory.setOnClickListener(v -> {
             dialog.dismiss();
             int rowCount = databaseHelper.deleteCategory(category);
-            if(rowCount >= 1){
+            if (rowCount >= 1) {
                 finish();
-            }else{
+            } else {
                 Toast.makeText(SecondActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
             }
         });
@@ -71,15 +68,15 @@ public class SecondActivity extends AppCompatActivity {
     private void showDescriptionList(String category) {
         Cursor cursor = databaseHelper.getAllNotesFromCategory(category);
         noteList = new ArrayList<>();
-        if(cursor.moveToFirst()){
-            do{
+        if (cursor.moveToFirst()) {
+            do {
                 noteList.add(
                         new Note(cursor.getInt(2),
                                 cursor.getString(0),
                                 cursor.getString(1))
 
                 );
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
 
 
@@ -95,7 +92,7 @@ public class SecondActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
