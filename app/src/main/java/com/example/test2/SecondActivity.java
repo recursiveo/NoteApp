@@ -58,8 +58,9 @@ public class SecondActivity extends AppCompatActivity {
 
         Button deleteCategory = dialog.findViewById(R.id.deleteCategory);
         deleteCategory.setOnClickListener(v -> {
+            dialog.dismiss();
             int rowCount = databaseHelper.deleteCategory(category);
-            if(rowCount == 1){
+            if(rowCount >= 1){
                 finish();
             }else{
                 Toast.makeText(SecondActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
